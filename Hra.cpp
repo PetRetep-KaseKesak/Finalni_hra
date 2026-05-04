@@ -60,8 +60,86 @@ void Temny_Kebab(){
     cout << endl << "Schopnosti: " << endl << "   Spalena tortila: poskozeni 3" << endl << "   Vysati omacky: udeli poskozeni 4 a vyleci hrace o 2 HP - stoji 4 many" << endl;
     cout << "   zkazene maso: pristi utok da trojnasobne poskozeni, ale hrac ztrati 2 HP - stoji 3 many";
 }
-int schopnost1(){
-
+void Vesnice(int HP, int aktHP, int aktMana, int Turkoin, int volba_nakupu, int maxHP, int maxMana, int damage, int schopnost1, int schopnost2, int &plusHP, int &plusaktHP, int &plusaktMana, int &aktTurkoin, int &plusdamage, int &plusschopnost1, int &plusschopnost2){
+    cout << endl << "Vitej ve vesnickem kebab shopu, hrdino, vylepsi zde sve statistiky a dovednosti, pokud na to mas Turkoiny.";
+    do {
+        cout << endl << endl << "HP: " << HP << "/" << aktHP << "   Mana: " << aktMana << "    Turkoiny: " << Turkoin;
+        cout << endl << endl << "1) Doplneni zivotu:                                      1 Turkoin";
+        cout << endl << "2) Vylepseni maximalnich zivotu o 1 a jejich doplneni:   3 Turkoiny" << endl;
+        cout << "3) Vylepseni maximalni many o 1:                         3 Turkoiny" << endl << "4) Vylepseni zakladniho poskozeni o 1:                   4 turkoiny" << endl;
+        cout << "5) Vylepseni vsech schopnosti o 1 poskozeni/vyleceni:    5 Turkoinu" << endl << "6) Opusteni obchodu" << endl <<"Pro vyber cinnosti zadej jeji cislo: ";
+        do {
+            cin >> volba_nakupu;
+            switch (volba_nakupu){
+            case 1:
+                if (Turkoin >= 1){
+                    HP = aktHP;
+                    plusHP = aktHP;
+                    cout << endl << "Byly ti doplneny zivoty. Aktualni stav: " << HP << "/" << aktHP;
+                    Turkoin--;
+                } else {
+                    cout << endl << "Nemas ani Turkoin, bohuzel zadne obchody probehnout nemuzou.";
+                }
+                break;
+            case 2:
+                if (Turkoin >= 3 && aktHP < maxHP){
+                    aktHP++;
+                    HP = aktHP;
+                    plusaktHP = aktHP;
+                    plusHP = aktHP;
+                    cout << endl << "Maximalni zdravy bylo vylepseno. Aktualni stav: " << HP << "/" << aktHP;
+                    Turkoin = Turkoin - 3;
+                } else if (aktHP == maxHP){
+                    cout << endl << "Zivoty uz mas vylepsene na maximum.";
+                } else if (Turkoin < 3){
+                    cout << endl << "Na tento kauf nemas dost Turkoinu.";
+                }
+                break;
+            case 3:
+                if (Turkoin >= 3 && aktMana < maxMana){
+                    aktMana++;
+                    plusaktMana = aktMana;
+                    cout << endl << "Maximalni Mana byla zvysena o 1";
+                    Turkoin = Turkoin - 3;
+                } else if (aktMana == maxMana){
+                    cout << endl << "Manu uz mas vylepsenou na maximum.";
+                } else if (Turkoin < 3){
+                    cout << endl << "Na tento kauf nemas dost Turkoinu.";
+                }
+                break;
+            case 4:
+                if (Turkoin >= 4 && damage < 15){
+                    damage++;
+                    plusdamage = damage;
+                    cout << endl <<"Maximalni poskozeni bylo zvyseno o 1";
+                    Turkoin = Turkoin - 4;
+                } else if (damage == 15){
+                    cout << endl << "damage uz mas vymaxovan.";
+                } else if (Turkoin < 4){
+                    cout << endl << "Na tento kauf nemas dost Turkoinu.";
+                }
+                break;
+            case 5:
+                if (Turkoin >= 5){
+                    schopnost1++;
+                    schopnost2++;
+                    plusschopnost1 = schopnost1;
+                    plusschopnost2 = schopnost2;
+                    cout << endl << "Schopnosti byly vylepseny.";
+                    Turkoin = Turkoin - 5;
+                } else if (Turkoin < 5){
+                    cout << endl << "Na tento kauf nemas dost Turkoinu.";
+                }
+                break;
+            case 6:
+                cout << endl << endl << "Stastnou cestu, hrdino!";
+                break;
+            default:
+                cout << "Zadal jsi spatne cislo, Zkus to znovu: ";
+            }
+        }while (volba_nakupu < 1 || volba_nakupu > 6);
+    }while(volba_nakupu != 6);
+    aktTurkoin = Turkoin;
 }
 
 int main(){
@@ -183,77 +261,5 @@ int main(){
 
     }
     HP = aktHP;
-    cout << endl << "Vitej ve vesnickem kebab shopu, hrdino, vylepsi zde sve statistiky a dovednosti, pokud na to mas Turkoiny.";
-    do {
-        cout << endl << endl << "HP: " << HP << "/" << aktHP << "   Mana: " << aktMana << "    Turkoiny: " << Turkoin;
-        cout << endl << endl << "1) Doplneni zivotu:                                      1 Turkoin";
-        cout << endl << "2) Vylepseni maximalnich zivotu o 1 a jejich doplneni:   3 Turkoiny" << endl;
-        cout << "3) Vylepseni maximalni many o 1:                         3 Turkoiny" << endl << "4) Vylepseni zakladniho poskozeni o 1:                   4 turkoiny" << endl;
-        cout << "5) Vylepseni vsech schopnosti o 1 poskozeni/vyleceni:    5 Turkoinu" << endl << "6) Opusteni obchodu" << endl <<"Pro vyber cinnosti zadej jeji cislo: ";
-        do {
-            cin >> volba_nakupu;
-            switch (volba_nakupu){
-            case 1:
-                if (Turkoin >= 1){
-                    HP = aktHP;
-                    cout << endl << "Byly ti doplneny zivoty. Aktualni stav: " << HP << "/" << aktHP;
-                    Turkoin--;
-                } else {
-                    cout << endl << "Nemas ani Turkoin, bohuzel zadne obchody probehnout nemuzou.";
-                }
-                break;
-            case 2:
-                if (Turkoin >= 3 && aktHP < maxHP){
-                    aktHP++;
-                    HP = aktHP;
-                    cout << endl << "Maximalni zdravy bylo vylepseno. Aktualni stav: " << HP << "/" << aktHP;
-                    Turkoin = Turkoin - 3;
-                } else if (aktHP == maxHP){
-                    cout << endl << "Zivoty uz mas vylepsene na maximum.";
-                } else if (Turkoin < 3){
-                    cout << endl << "Na tento kauf nemas dost Turkoinu.";
-                }
-                break;
-            case 3:
-                if (Turkoin >= 3 && aktMana < maxMana){
-                    aktMana++;
-                    cout << endl << "Maximalni Mana byla zvysena o 1";
-                    Turkoin = Turkoin - 3;
-                } else if (aktMana == maxMana){
-                    cout << endl << "Manu uz mas vylepsenou na maximum.";
-                } else if (Turkoin < 3){
-                    cout << endl << "Na tento kauf nemas dost Turkoinu.";
-                }
-                break;
-            case 4:
-                if (Turkoin >= 4 && damage < 15){
-                    damage++;
-                    cout << endl <<"Maximalni poskozeni bylo zvyseno o 1";
-                    Turkoin = Turkoin - 4;
-                } else if (damage == 15){
-                    cout << endl << "damage uz mas vymaxovan.";
-                } else if (Turkoin < 4){
-                    cout << endl << "Na tento kauf nemas dost Turkoinu.";
-                }
-                break;
-            case 5:
-                if (Turkoin >= 5){
-                    schopnost1++;
-                    schopnost2++;
-                    cout << endl << "Schopnosti byly vylepseny.";
-                    Turkoin = Turkoin - 5;
-                } else if (Turkoin < 5){
-                    cout << endl << "Na tento kauf nemas dost Turkoinu.";
-                }
-                break;
-            case 6:
-                cout << endl << endl << "Stastnou cestu, hrdino!";
-                break;
-            default:
-                cout << "Zadal jsi spatne cislo, Zkus to znovu: ";
-            }
-        }while (volba_nakupu < 1 || volba_nakupu > 5);
-    }while(volba_nakupu != 6);
-
-
+    Vesnice(HP, aktHP, aktMana, Turkoin, volba_nakupu, maxHP, maxMana, damage, schopnost1, schopnost2, HP, aktHP, aktMana, Turkoin, damage, schopnost1, schopnost2);
 }
