@@ -1,4 +1,5 @@
 #include <iostream>
+#include <time.h>
 using namespace std;
 void Gemuse_Kebab(){ //ohledne class jsem se radil s umelou inteligenci
     string jmeno = "Gemuse Kebab";
@@ -28,7 +29,7 @@ void Kebab_Classic(){
     cout << "Class: Kebab Classic" << endl << endl;
     cout << "Statistiky:"<< endl <<"   Zivot: "  << aktHP << endl << "   Utok: " << damage  << endl << "   Mana: " << aktMana  << endl << "   Turkoin: " << Turkoin;
     cout << endl <<"Schopnosti: " << endl << "   Hod rajcetem: poskozeni 4" << endl;
-    cout << "   zelna potopa: uberes vsem cilum 3 HP - stoji 3 many" << endl << "   Masovy vypad: Ubere nepritely 8 HP - stoji 5 man";
+    cout << "   Salatovy katapult: uberes vsem cilum 3 HP - stoji 3 many" << endl << "   Masovy vypad: Ubere nepritely 8 HP - stoji 5 man";
 }
 void Magicky_Falafel(){
     string jmeno = "Magicky Falafel";
@@ -43,12 +44,12 @@ void Magicky_Falafel(){
     cout << "Class: Magicky Falafel" << endl << endl;
     cout << "Statistiky:"<< endl << "   Zivot: " << aktHP  << endl << "   Utok: " << damage  << endl << "   Mana: " << aktMana  << endl << "   Turkoin: " << Turkoin;
     cout << endl << "Schopnosti: " << endl << "   Zasah cizrnou: poskozeni 2" << endl;
-    cout << "   Falafelova koule: vysoke poskozeni 10 HP - stoji 6 many" << endl << "   Omackova potopa: plosne poskozeni 4HP - stoji 4 many";
+    cout << "   Omackova potopa: plosne poskozeni 4HP - stoji 4 many" << endl << "   Falafelova koule: vysoke poskozeni 10 HP - stoji 6 many";
 }
 void Temny_Kebab(){
     string jmeno = "Temny Kebab";
-    int maxHP = 14;
-    int aktHP = 7;
+    int maxHP = 12;
+    int aktHP = 6;
     int maxMana = 20;
     int aktMana = 10;
     int Turkoin = 10;
@@ -132,7 +133,7 @@ void Vesnice(int HP, int aktHP, int aktMana, int Turkoin, int volba_nakupu, int 
                 }
                 break;
             case 6:
-                cout << endl << endl << "Stastnou cestu, hrdino!";
+                cout << endl << endl << "Stastnou cestu, hrdino!" << endl << endl;
                 break;
             default:
                 cout << "Zadal jsi spatne cislo, Zkus to znovu: ";
@@ -141,8 +142,741 @@ void Vesnice(int HP, int aktHP, int aktMana, int Turkoin, int volba_nakupu, int 
     }while(volba_nakupu != 6);
     aktTurkoin = Turkoin;
 }
+void levelup(int XP, int level, int aktHP, int aktMana, int damage, int &plusaktHP, int &plusHP, int &plusMana, int &plusdamage){
+    if (XP >= 150){
+        int nahodnyLvlUp = rand() % 3 + 1;
+        level++;
+        cout << endl << endl << "Tvuj level se zvysil na " << level;
+        cout << endl << "Buff za odmenu: ";
+        switch(nahodnyLvlUp){
+        case 1:
+            aktHP++;
+            cout << "zvyseni HP na " << aktHP;
+            plusHP = aktHP;
+            plusaktHP = aktHP;
+        case 2:
+            aktMana++;
+            cout << "zvyseni Maximalni Many na " << aktMana;
+            plusMana = aktMana;
+        case 3:
+            damage++;
+            cout << "zvyseni damage na " << damage;
+            plusdamage = damage;
+        }
+    }
+}
+void Kebabloater(string &name, int &zivoty, int &uder){
+    name = "Kebabloater";
+    zivoty = 40;
+    uder = 2;
+}
+void Kebabrain(string &name, int &zivoty, int &uder){
+    name = "Kebabrain";
+    zivoty = 20;
+    uder = 5;
+}
+void Rajcatove_monstrum(string &name, int &zivoty, int &uder){
+    name = "Rajcatove mostrum";
+    zivoty = 10;
+    uder = 2;
+}
+void Salatove_monstrum(string &name, int &zivoty, int &uder){
+    name = "Salatove mostrum";
+    zivoty = 15;
+    uder = 2;
+}
+void Zelne_monstrum(string &name, int &zivoty, int &uder){
+    name = "Zelne mostrum";
+    zivoty = 7;
+    uder = 3;
+}
+void souboj1(int Turkoin, int aktHP, int HP, int aktMana, int damage, int schopnost1, int Mana1, int schopnost2, int Mana2, int heal, int SnizeniHP, int XP, int &aktXP, int &aktTurkoin, int &afterHP){
+    string name;
+    int zivoty;
+    int uder;
+    int volba_tahu;
+    int nahoda = rand() % 2 + 1;
+    int nahoda2 = rand() % 3 + 1;
+    switch (nahoda2){
+    case 1:
+        Rajcatove_monstrum(name, zivoty, uder);
+        break;
+    case 2:
+        Salatove_monstrum(name, zivoty, uder);
+        break;
+    case 3:
+        Zelne_monstrum(name, zivoty, uder);
+        break;
+    }
+    cout << endl << endl << endl << "Pozor!!!" << endl << "Bojujes proti : " << name;
+    do {
+    do {
+        cout << endl << "Poskozeni nepritele: " << uder << "    Zivoty nepritele: " << zivoty;
+        cout << endl << endl << "Tvoje HP: " << HP << "/" << aktHP << "    tvoje Mana: " << aktMana;
+        cout << endl << " Mozne tahy: " << endl << "1) Majznuti zelim: poskozeni " << damage << endl << "2) Placnuti salatem: plosne poskozeni, vsechny nepratele poskody o " << schopnost1 << " HP - stoji 2 many" << endl << "3) Omacka navic: Vyleci ti " << schopnost2 << " HP - stoji 2 many"<< endl << "Co chces hrat? ";
+        cin >> volba_tahu;
+        switch(volba_tahu){
+        case 1:
+            if (zivoty >= damage){
+                cout << endl << "Ubral jsi nepriteli " << damage << " HP";
+            }else if (zivoty < damage){
+                cout << endl << "Ubral jsi nepriteli " << zivoty << " HP";
+            }
+            zivoty = zivoty - damage;
+            break;
+        case 2:
+            if (aktMana < Mana1){
+                cout << endl << "Na tohle nemas dost Many";
+                volba_tahu = 5;
+            } else if (aktMana >= Mana1){
+                aktMana = aktMana - Mana1;
+                if (zivoty >= schopnost1){
+                    cout << endl << "Ubral jsi nepritely " << schopnost1 << " HP a stalo te to " << Mana1 << " many.";
+                } else if (zivoty < schopnost1){
+                    cout << endl << "Ubral jsi nepritely " << zivoty << " HP a stalo te to " << Mana1 << " many.";
+                }
+                zivoty = zivoty - schopnost1;
+            }
+            break;
+        case 3:
+            if (aktMana < Mana2){
+                cout << endl << "Na tohle nemas dost Many";
+                volba_tahu = 5;
+            } else if (aktMana >= Mana2){
+                HP = HP + schopnost2;
+                if (HP > aktHP){
+                    HP = aktHP;
+                }
+                aktMana = aktMana - Mana2;
+                cout << endl << "Vyhealoval jsi se";
+            }
+            break;
+        default:
+            cout << endl << "Zadal jsi spatne cislo, zkus to znovu";
+        }
+    } while (volba_tahu < 1 || volba_tahu > 3);
+    if (zivoty > 0){
+        HP = HP - uder;
+        cout << endl << name << " ti ubralo " << uder << " HP." << endl;
+    }
+    } while (zivoty > 0 && HP > 0);
+    if (zivoty <= 0){
+        cout << endl << "Podarilo se ti zabit " << name << ".";
+        cout << endl << "Dostal jsi 50 XP";
+        aktXP = XP + 50;
+        if (nahoda == 1){
+            cout << endl << "Mas stesti, monstrum u sebe melo Turkoiny. Dostal jsi 5 Turkoinu.";
+            aktTurkoin = Turkoin + 5;
+        }
+        afterHP = aktHP - HP;
+        afterHP = afterHP / 2;
+        afterHP = afterHP + HP;
+    } else if (HP <= 0){
+        cout << " Zemrel jsi";
+        abort(); //Tohle jsem si našel na google. Nevìdìl jsem jak se program mùže ukonèit ve funkci.
+    }
+}
+void souboj2(int Turkoin, int aktHP, int HP, int aktMana, int damage, int schopnost1, int Mana1, int schopnost2, int Mana2, int heal, int SnizeniHP, int XP, int &aktXP, int &aktTurkoin, int &afterHP){
+    string name;
+    int zivoty;
+    int uder;
+    int volba_tahu;
+    int nahoda = rand() % 2 + 1;
+    int nahoda2 = rand() % 3 + 1;
+    switch (nahoda2){
+    case 1:
+        Rajcatove_monstrum(name, zivoty, uder);
+        break;
+    case 2:
+        Salatove_monstrum(name, zivoty, uder);
+        break;
+    case 3:
+        Zelne_monstrum(name, zivoty, uder);
+        break;
+    }
+    cout << endl << endl << endl << "Pozor!!!" << endl << "Bojujes proti : " << name;
+    do {
+    do {
+        cout << endl << "Poskozeni nepritele: " << uder << "    Zivoty nepritele: " << zivoty;
+        cout << endl << endl << "Tvoje HP: " << HP << "/" << aktHP << "    tvoje Mana: " << aktMana;
+        cout << endl << " Mozne tahy: " << endl << "1) Hod rajcetem: poskozeni " << damage << endl << "2) Salatovy katapult: uberes vsem cilum" << schopnost1 << "HP - stoji 3 many" << endl << "3)  Masovy vypad: Ubere nepritely" << schopnost2 << "HP - stoji 5 man" << endl << "Co chces hrat? ";
+        cin >> volba_tahu;
+        switch(volba_tahu){
+        case 1:
+            if (zivoty >= damage){
+                cout << endl << "Ubral jsi nepriteli " << damage << " HP";
+            }else if (zivoty < damage){
+                cout << endl << "Ubral jsi nepriteli " << zivoty << " HP";
+            }
+            zivoty = zivoty - damage;
+            break;
+        case 2:
+             if (aktMana < Mana1){
+                cout << endl << "Na tohle nemas dost Many";
+                volba_tahu = 5;
+            } else if (aktMana >= Mana1){
+                aktMana = aktMana - Mana1;
+                if (zivoty >= schopnost1){
+                    cout << endl << "Ubral jsi nepritely " << schopnost1 << " HP a stalo te to " << Mana1 << " many.";
+                } else if (zivoty < schopnost1){
+                    cout << endl << "Ubral jsi nepritely " << zivoty << " HP a stalo te to " << Mana1 << " many.";
+                }
+                zivoty = zivoty - schopnost1;
+            }
+            break;
+        case 3:
+            if (aktMana < Mana2){
+                cout << endl << "Na tohle nemas dost Many";
+                volba_tahu = 5;
+            } else if (aktMana >= Mana2){
+                aktMana = aktMana - Mana2;
+                if (zivoty >= schopnost2){
+                    cout << endl << "Ubral jsi nepritely " << schopnost2 << " HP a stalo te to " << Mana2 << " many.";
+                } else if (zivoty < schopnost2){
+                    cout << endl << "Ubral jsi nepritely " << zivoty << " HP a stalo te to " << Mana2 << " many.";
+                }
+                zivoty = zivoty - schopnost2;
+            }
+            break;
+        default:
+            cout << endl << "Zadal jsi spatne cislo, zkus to znovu";
+        }
+    } while (volba_tahu < 1 || volba_tahu > 3);
+    if (zivoty > 0){
+        HP = HP - uder;
+        cout << endl << name << " ti ubralo " << uder << " HP." << endl;
+    }
+    } while (zivoty > 0 && HP > 0);
+    if (zivoty <= 0){
+        cout << endl << "Podarilo se ti zabit " << name << ".";
+        cout << endl << "Dostal jsi 50 XP";
+        aktXP = XP + 50;
+        if (nahoda == 1){
+            cout << endl << "Mas stesti, monstrum u sebe melo Turkoiny. Dostal jsi 5 Turkoinu.";
+            aktTurkoin = Turkoin + 5;
+        }
+        afterHP = aktHP - HP;
+        afterHP = afterHP / 2;
+        afterHP = afterHP + HP;
+    } else if (HP <= 0){
+        cout << " Zemrel jsi";
+        abort(); //Tohle jsem si našel na google. Nevìdìl jsem jak se program mùže ukonèit ve funkci.
+    }
+}
+void souboj3(int Turkoin, int aktHP, int HP, int aktMana, int damage, int schopnost1, int Mana1, int schopnost2, int Mana2, int heal, int SnizeniHP, int XP, int &aktXP, int &aktTurkoin, int &afterHP){
+    string name;
+    int zivoty;
+    int uder;
+    int volba_tahu;
+    int nahoda = rand() % 2 + 1;
+    int nahoda2 = rand() % 3 + 1;
+    switch (nahoda2){
+    case 1:
+        Rajcatove_monstrum(name, zivoty, uder);
+        break;
+    case 2:
+        Salatove_monstrum(name, zivoty, uder);
+        break;
+    case 3:
+        Zelne_monstrum(name, zivoty, uder);
+        break;
+    }
+    cout << endl << "Pozor!!!" << endl << "Bojujes proti : " << name;
+    do {
+    do {
+        cout << endl << endl << endl << "Poskozeni nepritele: " << uder << "    Zivoty nepritele: " << zivoty;
+        cout << endl << endl << "Tvoje HP: " << HP << "/" << aktHP << "    tvoje Mana: " << aktMana;
+        cout << endl << " Mozne tahy: " << endl << "1) Zasah cizrnou: poskozeni " << damage << endl << "2) Omackova potopa: plosne poskozeni " << schopnost1 << " HP - stoji 4 many" << endl << "3) Falafelova koule: vysoke poskozeni" << schopnost2 << "HP - stoji 6 many" << endl << "Co chces hrat? ";
+        cin >> volba_tahu;
+        switch(volba_tahu){
+        case 1:
+            if (zivoty >= damage){
+                cout << endl << "Ubral jsi nepriteli " << damage << " HP";
+            }else if (zivoty < damage){
+                cout << endl << "Ubral jsi nepriteli " << zivoty << " HP";
+            }
+            zivoty = zivoty - damage;
+            break;
+        case 2:
+            if (aktMana < Mana1){
+                cout << endl << "Na tohle nemas dost Many";
+                volba_tahu = 5;
+            } else if (aktMana >= Mana1){
+                aktMana = aktMana - Mana1;
+                if (zivoty >= schopnost1){
+                    cout << endl << "Ubral jsi nepritely " << schopnost1 << " HP a stalo te to " << Mana1 << " many.";
+                } else if (zivoty < schopnost1){
+                    cout << endl << "Ubral jsi nepritely " << zivoty << " HP a stalo te to " << Mana1 << " many.";
+                }
+                zivoty = zivoty - schopnost1;
+            }
+            break;
+        case 3:
+             if (aktMana < Mana2){
+                cout << endl << "Na tohle nemas dost Many";
+                volba_tahu = 5;
+            } else if (aktMana >= Mana2){
+                aktMana = aktMana - Mana2;
+                if (zivoty >= schopnost2){
+                    cout << endl << "Ubral jsi nepritely " << schopnost2 << " HP a stalo te to " << Mana2 << " many.";
+                } else if (zivoty < schopnost2){
+                    cout << endl << "Ubral jsi nepritely " << zivoty << " HP a stalo te to " << Mana2 << " many.";
+                }
+                zivoty = zivoty - schopnost2;
+            }
+            break;
+        default:
+            cout << endl << "Zadal jsi spatne cislo, zkus to znovu";
+        }
+    } while (volba_tahu < 1 || volba_tahu > 3);
+    if (zivoty > 0){
+        HP = HP - uder;
+        cout << endl << name << " ti ubralo " << uder << " HP." << endl;
+    }
+    } while (zivoty > 0 && HP > 0);
+    if (zivoty <= 0){
+        cout << endl << "Podarilo se ti zabit " << name << ".";
+        cout << endl << "Dostal jsi 50 XP";
+        aktXP = XP + 50;
+        if (nahoda == 1){
+            cout << endl << "Mas stesti, monstrum u sebe melo Turkoiny. Dostal jsi 5 Turkoinu.";
+            aktTurkoin = Turkoin + 5;
+        }
+        afterHP = aktHP - HP;
+        afterHP = afterHP / 2;
+        afterHP = afterHP + HP;
+    } else if (HP <= 0){
+        cout << " Zemrel jsi";
+        abort(); //Tohle jsem si našel na google. Nevìdìl jsem jak se program mùže ukonèit ve funkci.
+    }
+}
+void souboj4(int Turkoin, int aktHP, int HP, int aktMana, int damage, int schopnost1, int Mana1, int schopnost2, int Mana2, int heal, int SnizeniHP, int XP, int &aktXP, int &aktTurkoin, int &afterHP){
+    string name;
+    int zivoty;
+    int uder;
+    int volba_tahu;
+    int nahoda = rand() % 2 + 1;
+    int nahoda2 = rand() % 3 + 1;
+    switch (nahoda2){
+    case 1:
+        Rajcatove_monstrum(name, zivoty, uder);
+        break;
+    case 2:
+        Salatove_monstrum(name, zivoty, uder);
+        break;
+    case 3:
+        Zelne_monstrum(name, zivoty, uder);
+        break;
+    }
+    cout << endl << endl << endl << "Pozor!!!" << endl << "Bojujes proti : " << name;
+    do {
+    do {
+        cout << endl << "Poskozeni nepritele: " << uder << "    Zivoty nepritele: " << zivoty;
+        cout << endl << endl << "Tvoje HP: " << HP << "/" << aktHP << "    tvoje Mana: " << aktMana;
+        cout << endl << " Mozne tahy: " << endl << "1) Spalena tortila: poskozeni " << damage << endl << "2) Vysati omacky: udeli poskozeni " << schopnost1 << " a vyleci hrace o 2 HP - stoji 4 many" << endl << "3) Zkazene maso: pristi utok da trojnasobne poskozeni, ale hrac ztrati 2 HP - stoji 3 many" << endl << "Co chces hrat? ";
+        cin >> volba_tahu;
+        switch(volba_tahu){
+        case 1:
+            if (zivoty >= damage){
+                cout << endl << "Ubral jsi nepriteli " << damage << " HP";
+            }else if (zivoty < damage){
+                cout << endl << "Ubral jsi nepriteli " << zivoty << " HP";
+            }
+            zivoty = zivoty - damage;
+            break;
+        case 2:
+            if (aktMana < Mana1){
+                cout << endl << "Na tohle nemas dost Many";
+                volba_tahu = 5;
+            } else if (aktMana >= Mana1){
+                aktMana = aktMana - Mana1;
+                if (zivoty >= schopnost1){
+                    cout << endl << "Ubral jsi nepritely " << schopnost1 << " HP, vyhealoval sis " << heal << " HP a stalo te to " << Mana1 << " many.";
+                    HP = HP + 2;
+                    if (HP > aktHP){
+                        HP = aktHP;
+                    }
+                } else if (zivoty < schopnost1){
+                    cout << endl << "Ubral jsi nepritely " << zivoty << " HP, vyhealoval sis " << heal << " HP a stalo te to " << Mana1 << " many.";
+                    HP = HP + 2;
+                    if (HP > aktHP){
+                        HP = aktHP;
+                    }
+                }
+                zivoty = zivoty - schopnost1;
+            }
+            break;
+        case 3:
+            if (aktMana < Mana2){
+                cout << endl << "Na tohle nemas dost Many";
+                volba_tahu = 5;
+            } else if (aktMana >= Mana2){
+                aktMana = aktMana - Mana2;
+                if (zivoty >= schopnost2 * damage){
+                    cout << endl << "Ubral jsi nepritely " << schopnost2 * damage<< " HP, ubral sis 2 HP a stalo te to " << Mana2 << " many.";
+                } else if (zivoty < schopnost2 * damage){
+                    cout << endl << "Ubral jsi nepritely " << zivoty << " HP, ubral sis 2 HP a stalo te to " << Mana2 << " many.";
+                }
+                zivoty = zivoty - schopnost2 * damage;
+                HP = HP - SnizeniHP;
+            }
+            break;
+        default:
+            cout << endl << "Zadal jsi spatne cislo, zkus to znovu";
+        }
+    } while (volba_tahu < 1 || volba_tahu > 3);
+    if (zivoty > 0){
+        HP = HP - uder;
+        cout << endl << name << " ti ubralo " << uder << " HP." << endl;
+    }
+    } while (zivoty > 0 && HP > 0);
+    if (zivoty <= 0){
+        cout << endl << "Podarilo se ti zabit " << name << ".";
+        cout << endl << "Dostal jsi 50 XP";
+        aktXP = XP + 50;
+        if (nahoda == 1){
+            cout << endl << "Mas stesti, monstrum u sebe melo Turkoiny. Dostal jsi 5 Turkoinu.";
+            aktTurkoin = Turkoin + 5;
+        }
+        afterHP = aktHP - HP;
+        afterHP = afterHP / 2;
+        afterHP = afterHP + HP;
+    } else if (HP <= 0){
+        cout << " Zemrel jsi";
+        abort(); //Tohle jsem si našel na google. Nevìdìl jsem jak se program mùže ukonèit ve funkci.
+    }
+}
+void MiniBoss1(int Turkoin, int aktHP, int HP, int aktMana, int damage, int schopnost1, int Mana1, int schopnost2, int Mana2, int heal, int SnizeniHP, int XP, int &aktXP, int &aktTurkoin, int &afterHP){
+    string name;
+    int zivoty;
+    int uder;
+    int nahoda = rand() % 2 + 1;
+    switch (nahoda){
+    case 1:
+        Kebabloater(name, zivoty, uder);
+        break;
+    case 2:
+        Kebabrain(name, zivoty, uder);
+        break;
+    }
+
+    int volba_tahu;
+    cout << endl << endl << endl << "Pozor!!!" << endl << "Bojujes proti Mini bossovi: " << name;
+    do {
+    do {
+        cout << endl << "Poskozeni nepritele: " << uder << "    Zivoty nepritele: " << zivoty;
+        HP = HP - uder;
+        cout << endl << endl << name << " ti ubral " << uder << " HP." << endl;
+        if (HP <= 0){
+            cout << "Mini boss te low-key zabil.";
+            abort();
+        }
+        cout << endl << endl << "Tvoje HP: " << HP << "/" << aktHP << "    tvoje Mana: " << aktMana;
+        cout << endl << " Mozne tahy: " << endl << "1) Majznuti zelim: poskozeni " << damage << endl << "2) Placnuti salatem: plosne poskozeni, vsechny nepratele poskody o " << schopnost1 << " HP - stoji 2 many" << endl << "3) Omacka navic: Vyleci ti " << schopnost2 << " HP - stoji 2 many"<< endl << "Co chces hrat? ";
+        cin >> volba_tahu;
+        switch(volba_tahu){
+        case 1:
+            if (zivoty >= damage){
+                cout << endl << "Ubral jsi nepriteli " << damage << " HP";
+            }else if (zivoty < damage){
+                cout << endl << "Ubral jsi nepriteli " << zivoty << " HP";
+            }
+            zivoty = zivoty - damage;
+            break;
+        case 2:
+            if (aktMana < Mana1){
+                cout << endl << "Na tohle nemas dost Many";
+                volba_tahu = 5;
+            } else if (aktMana >= Mana1){
+                aktMana = aktMana - Mana1;
+                if (zivoty >= schopnost1){
+                    cout << endl << "Ubral jsi nepritely " << schopnost1 << " HP a stalo te to " << Mana1 << " many.";
+                } else if (zivoty < schopnost1){
+                    cout << endl << "Ubral jsi nepritely " << zivoty << " HP a stalo te to " << Mana1 << " many.";
+                }
+                zivoty = zivoty - schopnost1;
+            }
+            break;
+        case 3:
+            if (aktMana < Mana2){
+                cout << endl << "Na tohle nemas dost Many";
+                volba_tahu = 5;
+            } else if (aktMana >= Mana2){
+                HP = HP + schopnost2;
+                if (HP > aktHP){
+                    HP = aktHP;
+                }
+                aktMana = aktMana - Mana2;
+                cout << endl << "Vyhealoval jsi se";
+            }
+            break;
+        default:
+            cout << endl << "Zadal jsi spatne cislo, zkus to znovu";
+        }
+    } while (volba_tahu < 1 || volba_tahu > 3);
+    } while (zivoty > 0 && HP > 0);
+    if (zivoty <= 0){
+        cout << endl << "Podarilo se ti zabit " << name << ".";
+        cout << endl << "Dostal jsi 150 XP";
+        aktXP = XP + 150;
+        cout << endl << "Mini boss mìl u sebe 10 Turkoinu.";
+        afterHP = aktHP - HP;
+        afterHP = afterHP / 2;
+        afterHP = afterHP + HP;
+    }
+}
+void MiniBoss2(int Turkoin, int aktHP, int HP, int aktMana, int damage, int schopnost1, int Mana1, int schopnost2, int Mana2, int heal, int SnizeniHP, int XP, int &aktXP, int &aktTurkoin, int &afterHP){
+    string name;
+    int zivoty;
+    int uder;
+    int nahoda = rand() % 2 + 1;
+    switch (nahoda){
+    case 1:
+        Kebabloater(name, zivoty, uder);
+        break;
+    case 2:
+        Kebabrain(name, zivoty, uder);
+        break;
+    }
+
+    int volba_tahu;
+    cout << endl << endl << endl << "Pozor!!!" << endl << "Bojujes proti Mini bossovi: " << name;
+    do {
+    do {
+        cout << endl << "Poskozeni nepritele: " << uder << "    Zivoty nepritele: " << zivoty;
+        HP = HP - uder;
+        cout << endl << endl << name << " ti ubral " << uder << " HP." << endl;
+        if (HP <= 0){
+            cout << "Mini boss te low-key zabil.";
+            abort();
+        }
+        cout << endl << endl << "Tvoje HP: " << HP << "/" << aktHP << "    tvoje Mana: " << aktMana;
+        cout << endl << " Mozne tahy: " << endl << "1) Hod rajcetem: poskozeni " << damage << endl << "2) Salatovy katapult: uberes vsem cilum" << schopnost1 << "HP - stoji 3 many" << endl << "3)  Masovy vypad: Ubere nepritely" << schopnost2 << "HP - stoji 5 man" << endl << "Co chces hrat? ";
+        cin >> volba_tahu;
+        switch(volba_tahu){
+        case 1:
+            if (zivoty >= damage){
+                cout << endl << "Ubral jsi nepriteli " << damage << " HP";
+            }else if (zivoty < damage){
+                cout << endl << "Ubral jsi nepriteli " << zivoty << " HP";
+            }
+            zivoty = zivoty - damage;
+            break;
+        case 2:
+             if (aktMana < Mana1){
+                cout << endl << "Na tohle nemas dost Many";
+                volba_tahu = 5;
+            } else if (aktMana >= Mana1){
+                aktMana = aktMana - Mana1;
+                if (zivoty >= schopnost1){
+                    cout << endl << "Ubral jsi nepritely " << schopnost1 << " HP a stalo te to " << Mana1 << " many.";
+                } else if (zivoty < schopnost1){
+                    cout << endl << "Ubral jsi nepritely " << zivoty << " HP a stalo te to " << Mana1 << " many.";
+                }
+                zivoty = zivoty - schopnost1;
+            }
+            break;
+        case 3:
+            if (aktMana < Mana2){
+                cout << endl << "Na tohle nemas dost Many";
+                volba_tahu = 5;
+            } else if (aktMana >= Mana2){
+                aktMana = aktMana - Mana2;
+                if (zivoty >= schopnost2){
+                    cout << endl << "Ubral jsi nepritely " << schopnost2 << " HP a stalo te to " << Mana2 << " many.";
+                } else if (zivoty < schopnost2){
+                    cout << endl << "Ubral jsi nepritely " << zivoty << " HP a stalo te to " << Mana2 << " many.";
+                }
+                zivoty = zivoty - schopnost2;
+            }
+            break;
+        default:
+            cout << endl << "Zadal jsi spatne cislo, zkus to znovu";
+        }
+    } while (volba_tahu < 1 || volba_tahu > 3);
+    } while (zivoty > 0 && HP > 0);
+    if (zivoty <= 0){
+        cout << endl << "Podarilo se ti zabit " << name << ".";
+        cout << endl << "Dostal jsi 150 XP";
+        aktXP = XP + 150;
+        cout << endl << "Mini boss mìl u sebe 10 Turkoinu.";
+        afterHP = aktHP - HP;
+        afterHP = afterHP / 2;
+        afterHP = afterHP + HP;
+    }
+}
+void MiniBoss3(int Turkoin, int aktHP, int HP, int aktMana, int damage, int schopnost1, int Mana1, int schopnost2, int Mana2, int heal, int SnizeniHP, int XP, int &aktXP, int &aktTurkoin, int &afterHP){
+    string name;
+    int zivoty;
+    int uder;
+    int nahoda = rand() % 2 + 1;
+    switch (nahoda){
+    case 1:
+        Kebabloater(name, zivoty, uder);
+        break;
+    case 2:
+        Kebabrain(name, zivoty, uder);
+        break;
+    }
+
+    int volba_tahu;
+    cout << endl << endl << endl << "Pozor!!!" << endl << "Bojujes proti Mini bossovi: " << name;
+    do {
+    do {
+        cout << endl << "Poskozeni nepritele: " << uder << "    Zivoty nepritele: " << zivoty;
+        HP = HP - uder;
+        cout << endl << endl << name << " ti ubral " << uder << " HP." << endl;
+        if (HP <= 0){
+            cout << "Mini boss te low-key zabil.";
+            abort();
+        }
+        cout << endl << endl << "Tvoje HP: " << HP << "/" << aktHP << "    tvoje Mana: " << aktMana;
+        cout << endl << " Mozne tahy: " << endl << "1) Zasah cizrnou: poskozeni " << damage << endl << "2) Omackova potopa: plosne poskozeni " << schopnost1 << " HP - stoji 4 many" << endl << "3) Falafelova koule: vysoke poskozeni" << schopnost2 << "HP - stoji 6 many" << endl << "Co chces hrat? ";
+        cin >> volba_tahu;
+        switch(volba_tahu){
+        case 1:
+            if (zivoty >= damage){
+                cout << endl << "Ubral jsi nepriteli " << damage << " HP";
+            }else if (zivoty < damage){
+                cout << endl << "Ubral jsi nepriteli " << zivoty << " HP";
+            }
+            zivoty = zivoty - damage;
+            break;
+        case 2:
+            if (aktMana < Mana1){
+                cout << endl << "Na tohle nemas dost Many";
+                volba_tahu = 5;
+            } else if (aktMana >= Mana1){
+                aktMana = aktMana - Mana1;
+                if (zivoty >= schopnost1){
+                    cout << endl << "Ubral jsi nepritely " << schopnost1 << " HP a stalo te to " << Mana1 << " many.";
+                } else if (zivoty < schopnost1){
+                    cout << endl << "Ubral jsi nepritely " << zivoty << " HP a stalo te to " << Mana1 << " many.";
+                }
+                zivoty = zivoty - schopnost1;
+            }
+            break;
+        case 3:
+             if (aktMana < Mana2){
+                cout << endl << "Na tohle nemas dost Many";
+                volba_tahu = 5;
+            } else if (aktMana >= Mana2){
+                aktMana = aktMana - Mana2;
+                if (zivoty >= schopnost2){
+                    cout << endl << "Ubral jsi nepritely " << schopnost2 << " HP a stalo te to " << Mana2 << " many.";
+                } else if (zivoty < schopnost2){
+                    cout << endl << "Ubral jsi nepritely " << zivoty << " HP a stalo te to " << Mana2 << " many.";
+                }
+                zivoty = zivoty - schopnost2;
+            }
+            break;
+        default:
+            cout << endl << "Zadal jsi spatne cislo, zkus to znovu";
+        }
+    } while (volba_tahu < 1 || volba_tahu > 3);
+    } while (zivoty > 0 && HP > 0);
+    if (zivoty <= 0){
+        cout << endl << "Podarilo se ti zabit " << name << ".";
+        cout << endl << "Dostal jsi 150 XP";
+        aktXP = XP + 150;
+        cout << endl << "Mini boss mìl u sebe 10 Turkoinu.";
+        afterHP = aktHP - HP;
+        afterHP = afterHP / 2;
+        afterHP = afterHP + HP;
+    }
+}
+void MiniBoss4(int Turkoin, int aktHP, int HP, int aktMana, int damage, int schopnost1, int Mana1, int schopnost2, int Mana2, int heal, int SnizeniHP, int XP, int &aktXP, int &aktTurkoin, int &afterHP){
+    string name;
+    int zivoty;
+    int uder;
+    int nahoda = rand() % 2 + 1;
+    switch (nahoda){
+    case 1:
+        Kebabloater(name, zivoty, uder);
+        break;
+    case 2:
+        Kebabrain(name, zivoty, uder);
+        break;
+    }
+
+    int volba_tahu;
+    cout << endl << endl << endl << "Pozor!!!" << endl << "Bojujes proti Mini bossovi: " << name;
+    do {
+    do {
+        cout << endl << "Poskozeni nepritele: " << uder << "    Zivoty nepritele: " << zivoty;
+        HP = HP - uder;
+        cout << endl << endl << name << " ti ubral " << uder << " HP." << endl;
+        if (HP <= 0){
+            cout << "Mini boss te low-key zabil.";
+            abort();
+        }
+        cout << endl << endl << "Tvoje HP: " << HP << "/" << aktHP << "    tvoje Mana: " << aktMana;
+        cout << endl << " Mozne tahy: " << endl << "1) Spalena tortila: poskozeni " << damage << endl << "2) Vysati omacky: udeli poskozeni " << schopnost1 << " a vyleci hrace o 2 HP - stoji 4 many" << endl << "3) Zkazene maso: pristi utok da trojnasobne poskozeni, ale hrac ztrati 2 HP - stoji 3 many" << endl << "Co chces hrat? ";
+        cin >> volba_tahu;
+        switch(volba_tahu){
+        case 1:
+            if (zivoty >= damage){
+                cout << endl << "Ubral jsi nepriteli " << damage << " HP";
+            }else if (zivoty < damage){
+                cout << endl << "Ubral jsi nepriteli " << zivoty << " HP";
+            }
+            zivoty = zivoty - damage;
+            break;
+        case 2:
+            if (aktMana < Mana1){
+                cout << endl << "Na tohle nemas dost Many";
+                volba_tahu = 5;
+            } else if (aktMana >= Mana1){
+                aktMana = aktMana - Mana1;
+                if (zivoty >= schopnost1){
+                    cout << endl << "Ubral jsi nepritely " << schopnost1 << " HP, vyhealoval sis " << heal << " HP a stalo te to " << Mana1 << " many.";
+                    HP = HP + 2;
+                    if (HP > aktHP){
+                        HP = aktHP;
+                    }
+                } else if (zivoty < schopnost1){
+                    cout << endl << "Ubral jsi nepritely " << zivoty << " HP, vyhealoval sis " << heal << " HP a stalo te to " << Mana1 << " many.";
+                    HP = HP + 2;
+                    if (HP > aktHP){
+                        HP = aktHP;
+                    }
+                }
+                zivoty = zivoty - schopnost1;
+            }
+            break;
+        case 3:
+            if (aktMana < Mana2){
+                cout << endl << "Na tohle nemas dost Many";
+                volba_tahu = 5;
+            } else if (aktMana >= Mana2){
+                aktMana = aktMana - Mana2;
+                if (zivoty >= schopnost2 * damage){
+                    cout << endl << "Ubral jsi nepritely " << schopnost2 * damage<< " HP, ubral sis 2 HP a stalo te to " << Mana2 << " many.";
+                } else if (zivoty < schopnost2 * damage){
+                    cout << endl << "Ubral jsi nepritely " << zivoty << " HP, ubral sis 2 HP a stalo te to " << Mana2 << " many.";
+                }
+                zivoty = zivoty - schopnost2 * damage;
+                HP = HP - SnizeniHP;
+            }
+            break;
+        default:
+            cout << endl << "Zadal jsi spatne cislo, zkus to znovu";
+        }
+    } while (volba_tahu < 1 || volba_tahu > 3);
+    } while (zivoty > 0 && HP > 0);
+    if (zivoty <= 0){
+        cout << endl << "Podarilo se ti zabit " << name << ".";
+        cout << endl << "Dostal jsi 150 XP";
+        aktXP = XP + 150;
+        cout << endl << "Mini boss mìl u sebe 10 Turkoinu.";
+        afterHP = aktHP - HP;
+        afterHP = afterHP / 2;
+        afterHP = afterHP + HP;
+    }
+}
 
 int main(){
+    srand (time(NULL));
     string jmeno;
     int maxHP;
     int aktHP;
@@ -150,7 +884,7 @@ int main(){
     int aktMana;
     int Turkoin;
     int level;
-    int XP;
+    int XP = 0;
     int damage;
     int volba_class;
     char potvrzeni;
@@ -237,14 +971,14 @@ int main(){
         level = 1;
         XP = 0;
         damage = 2;
-        schopnost1 = 10;
-        Mana1 = 6;
-        schopnost2 = 4;
-        Mana2 = 4;
+        schopnost1 = 4;
+        Mana1 = 4;
+        schopnost2 = 10;
+        Mana2 = 6;
     } else if (volba_class == 4){
         jmeno = "Temny Kebab";
-        maxHP = 16;
-        aktHP = 8;
+        maxHP = 12;
+        aktHP = 6;
         maxMana = 20;
         aktMana = 10;
         Turkoin = 10;
@@ -257,9 +991,39 @@ int main(){
         schopnost2 = 3;
         SnizeniHP = 2;
         Mana2 = 3;
-
-
     }
     HP = aktHP;
     Vesnice(HP, aktHP, aktMana, Turkoin, volba_nakupu, maxHP, maxMana, damage, schopnost1, schopnost2, HP, aktHP, aktMana, Turkoin, damage, schopnost1, schopnost2);
+    switch (volba_class){
+    case 1:
+        souboj1(Turkoin, aktHP, HP, aktMana, damage, schopnost1, Mana1, schopnost2, Mana2, heal, SnizeniHP, XP, XP, Turkoin, HP);
+        break;
+    case 2:
+        souboj2(Turkoin, aktHP, HP, aktMana, damage, schopnost1, Mana1, schopnost2, Mana2, heal, SnizeniHP, XP, XP, Turkoin, HP);
+        break;
+    case 3:
+        souboj3(Turkoin, aktHP, HP, aktMana, damage, schopnost1, Mana1, schopnost2, Mana2, heal, SnizeniHP, XP, XP, Turkoin, HP);
+        break;
+    case 4:
+        souboj4(Turkoin, aktHP, HP, aktMana, damage, schopnost1, Mana1, schopnost2, Mana2, heal, SnizeniHP, XP, XP, Turkoin, HP);
+        break;
+    }
+    switch (volba_class){
+    case 1:
+        souboj1(Turkoin, aktHP, HP, aktMana, damage, schopnost1, Mana1, schopnost2, Mana2, heal, SnizeniHP, XP, XP, Turkoin, HP);
+        break;
+    case 2:
+        souboj2(Turkoin, aktHP, HP, aktMana, damage, schopnost1, Mana1, schopnost2, Mana2, heal, SnizeniHP, XP, XP, Turkoin, HP);
+        break;
+    case 3:
+        souboj3(Turkoin, aktHP, HP, aktMana, damage, schopnost1, Mana1, schopnost2, Mana2, heal, SnizeniHP, XP, XP, Turkoin, HP);
+        break;
+    case 4:
+        souboj4(Turkoin, aktHP, HP, aktMana, damage, schopnost1, Mana1, schopnost2, Mana2, heal, SnizeniHP, XP, XP, Turkoin, HP);
+        break;
+    }
+
+
+    MiniBoss1(Turkoin, aktHP, HP, aktMana, damage, schopnost1, Mana1, schopnost2, Mana2, heal, SnizeniHP, XP, XP, Turkoin, HP);
+    levelup(XP, level, aktHP, aktMana, damage, aktHP, HP, aktMana, damage);
 }
