@@ -3,8 +3,8 @@
 using namespace std;
 void Gemuse_Kebab(){ //ohledne class jsem se radil s umelou inteligenci
     string jmeno = "Gemuse Kebab";
-    int maxHP = 24;
-    int aktHP = 12;
+    int maxHP = 20;
+    int aktHP = 10;
     int maxMana = 14;
     int aktMana = 7;
     int Turkoin = 10;
@@ -18,48 +18,48 @@ void Gemuse_Kebab(){ //ohledne class jsem se radil s umelou inteligenci
 }
 void Kebab_Classic(){
     string jmeno = "Kebab Classic";
-    int maxHP = 18;
-    int aktHP = 9;
-    int maxMana = 16;
-    int aktMana = 8;
+    int maxHP = 24;
+    int aktHP = 12;
+    int maxMana = 18;
+    int aktMana = 9;
     int Turkoin = 10;
     int level = 1;
     int XP = 0;
     int damage = 4;
     cout << "Class: Kebab Classic" << endl << endl;
     cout << "Statistiky:"<< endl <<"   Zivot: "  << aktHP << endl << "   Utok: " << damage  << endl << "   Mana: " << aktMana  << endl << "   Turkoin: " << Turkoin;
-    cout << endl <<"Schopnosti: " << endl << "   Hod rajcetem: poskozeni 4" << endl;
-    cout << "   Salatovy katapult: uberes vsem cilum 3 HP - stoji 3 many" << endl << "   Masovy vypad: Ubere nepritely 8 HP - stoji 5 man";
+    cout << endl <<"Schopnosti: " << endl << "   Hod rajcetem: poskozeni 5" << endl;
+    cout << "   Salatovy katapult: uberes vsem cilum 3 HP - stoji 2 many" << endl << "   Masovy vypad: Ubere nepritely 7 HP - stoji 3 man";
 }
 void Magicky_Falafel(){
     string jmeno = "Magicky Falafel";
-    int maxHP = 12;
-    int aktHP = 6;
+    int maxHP = 18;
+    int aktHP = 9;
     int maxMana = 30;
     int aktMana = 15;
     int Turkoin = 10;
     int level = 1;
     int XP = 0;
-    int damage = 2;
+    int damage = 3;
     cout << "Class: Magicky Falafel" << endl << endl;
     cout << "Statistiky:"<< endl << "   Zivot: " << aktHP  << endl << "   Utok: " << damage  << endl << "   Mana: " << aktMana  << endl << "   Turkoin: " << Turkoin;
-    cout << endl << "Schopnosti: " << endl << "   Zasah cizrnou: poskozeni 2" << endl;
+    cout << endl << "Schopnosti: " << endl << "   Zasah cizrnou: poskozeni 3" << endl;
     cout << "   Omackova potopa: plosne poskozeni 4HP - stoji 4 many" << endl << "   Falafelova koule: vysoke poskozeni 10 HP - stoji 6 many";
 }
 void Temny_Kebab(){
     string jmeno = "Temny Kebab";
-    int maxHP = 12;
-    int aktHP = 6;
-    int maxMana = 20;
-    int aktMana = 10;
+    int maxHP = 14;
+    int aktHP = 7;
+    int maxMana = 24;
+    int aktMana = 12;
     int Turkoin = 10;
     int level = 1;
     int XP = 0;
     int damage = 3;
     cout << "Class: Temny Kebab" << endl << endl;
     cout << "Statistiky:"<< endl << "   Zivot: " << aktHP  << endl << "   Utok: " << damage  << endl << "   Mana: " << aktMana  << endl << "   Turkoin: " << Turkoin;
-    cout << endl << "Schopnosti: " << endl << "   Spalena tortila: poskozeni 3" << endl << "   Vysati omacky: udeli poskozeni 4 a vyleci hrace o 2 HP - stoji 4 many" << endl;
-    cout << "   zkazene maso: pristi utok da trojnasobne poskozeni, ale hrac ztrati 2 HP - stoji 3 many";
+    cout << endl << "Schopnosti: " << endl << "   Spalena tortila: poskozeni 3" << endl << "   Vysati omacky: udeli poskozeni 4 a vyleci hrace o 3 HP - stoji 4 many" << endl;
+    cout << "   zkazene maso: pristi utok da trojnasobne poskozeni, ale hrac ztrati 1 HP - stoji 3 many";
 }
 void Vesnice(int HP, int aktHP, int aktMana, int Turkoin, int volba_nakupu, int maxHP, int maxMana, int damage, int schopnost1, int schopnost2, int &plusHP, int &plusaktHP, int &plusaktMana, int &aktTurkoin, int &plusdamage, int &plusschopnost1, int &plusschopnost2){
     cout << endl << "Vitej ve vesnickem kebab shopu, hrdino, vylepsi zde sve statistiky a dovednosti, pokud na to mas Turkoiny.";
@@ -142,12 +142,14 @@ void Vesnice(int HP, int aktHP, int aktMana, int Turkoin, int volba_nakupu, int 
     }while(volba_nakupu != 6);
     aktTurkoin = Turkoin;
 }
-void levelup(int XP, int level, int aktHP, int aktMana, int damage, int &plusaktHP, int &plusHP, int &plusMana, int &plusdamage, int &afterXP){
+void levelup(int XP, int level, int aktHP, int aktMana, int damage, int &plusaktHP, int &plusHP, int &plusMana, int &plusdamage, int &afterXP, int &plusLevel){
     do{
-    if (XP >= 100){
+    if (XP >= 150){
         int nahodnyLvlUp = rand() % 3 + 1;
         level++;
-        afterXP - 100;
+        plusLevel = level;
+        XP = XP - 150;
+        afterXP = XP;
         cout << endl << endl << "Tvuj level se zvysil na " << level;
         cout << endl << "Buff za odmenu: ";
         switch(nahodnyLvlUp){
@@ -178,7 +180,7 @@ void Kebabloater(string &name, int &zivoty, int &uder){
 }
 void Kebabrain(string &name, int &zivoty, int &uder){
     name = "Kebabrain";
-    zivoty = 20;
+    zivoty = 15;
     uder = 4;
 }
 void Rajcatove_monstrum(string &name, int &zivoty, int &uder){
@@ -244,8 +246,8 @@ void Omackove_trio(string &name, int &zivoty, int &uder, string &name2, int &ziv
     zivoty2 = 20;
     uder2 = 1;
     name3 = "paliva";
-    zivoty3 = 6;
-    uder3 = 271;
+    zivoty3 = 5;
+    uder3 = 10;
 }
 void souboj1(int Turkoin, int aktHP, int HP, int aktMana, int damage, int schopnost1, int Mana1, int schopnost2, int Mana2, int heal, int SnizeniHP, int XP, int &aktXP, int &aktTurkoin, int &afterHP){
     string name;
@@ -356,7 +358,7 @@ void souboj2(int Turkoin, int aktHP, int HP, int aktMana, int damage, int schopn
     do {
         cout << endl << "Poskozeni nepritele: " << uder << "    Zivoty nepritele: " << zivoty;
         cout << endl << endl << "Tvoje HP: " << HP << "/" << aktHP << "    tvoje Mana: " << aktMana;
-        cout << endl << " Mozne tahy: " << endl << "1) Hod rajcetem: poskozeni " << damage << endl << "2) Salatovy katapult: uberes vsem cilum " << schopnost1 << " HP - stoji 3 many" << endl << "3)  Masovy vypad: Ubere nepritely " << schopnost2 << " HP - stoji 5 man" << endl << "Co chces hrat? ";
+        cout << endl << " Mozne tahy: " << endl << "1) Hod rajcetem: poskozeni " << damage << endl << "2) Salatovy katapult: uberes vsem cilum " << schopnost1 << " HP - stoji 2 many" << endl << "3)  Masovy vypad: Ubere nepritely " << schopnost2 << " HP - stoji 3 man" << endl << "Co chces hrat? ";
         cin >> volba_tahu;
         switch(volba_tahu){
         case 1:
@@ -530,7 +532,7 @@ void souboj4(int Turkoin, int aktHP, int HP, int aktMana, int damage, int schopn
     do {
         cout << endl << "Poskozeni nepritele: " << uder << "    Zivoty nepritele: " << zivoty;
         cout << endl << endl << "Tvoje HP: " << HP << "/" << aktHP << "    tvoje Mana: " << aktMana;
-        cout << endl << " Mozne tahy: " << endl << "1) Spalena tortila: poskozeni " << damage << endl << "2) Vysati omacky: udeli poskozeni " << schopnost1 << " a vyleci hrace o 2 HP - stoji 4 many" << endl << "3) Zkazene maso: pristi utok da " << schopnost2 << "nasobne poskozeni, ale hrac ztrati 2 HP - stoji 3 many" << endl << "Co chces hrat? ";
+        cout << endl << " Mozne tahy: " << endl << "1) Spalena tortila: poskozeni " << damage << endl << "2) Vysati omacky: udeli poskozeni " << schopnost1 << " a vyleci hrace o 3 HP - stoji 4 many" << endl << "3) Zkazene maso: pristi utok da " << schopnost2 << "nasobne poskozeni, ale hrac ztrati 1 HP - stoji 3 many" << endl << "Co chces hrat? ";
         cin >> volba_tahu;
         switch(volba_tahu){
         case 1:
@@ -549,13 +551,13 @@ void souboj4(int Turkoin, int aktHP, int HP, int aktMana, int damage, int schopn
                 aktMana = aktMana - Mana1;
                 if (zivoty >= schopnost1){
                     cout << endl << "Ubral jsi nepritely " << schopnost1 << " HP, vyhealoval sis " << heal << " HP a stalo te to " << Mana1 << " many.";
-                    HP = HP + 2;
+                    HP = HP + 3;
                     if (HP > aktHP){
                         HP = aktHP;
                     }
                 } else if (zivoty < schopnost1){
                     cout << endl << "Ubral jsi nepritely " << zivoty << " HP, vyhealoval sis " << heal << " HP a stalo te to " << Mana1 << " many.";
-                    HP = HP + 2;
+                    HP = HP + 3;
                     if (HP > aktHP){
                         HP = aktHP;
                     }
@@ -569,13 +571,18 @@ void souboj4(int Turkoin, int aktHP, int HP, int aktMana, int damage, int schopn
                 volba_tahu = 5;
             } else if (aktMana >= Mana2){
                 aktMana = aktMana - Mana2;
+                HP = HP - 1;
+                if (HP <= 0){
+                    cout << "Zabil ses LOL :-D";
+                    abort();
+                }
                 if (zivoty >= (schopnost2 * damage)){
                     cout << endl << "Ubral jsi nepritely " << schopnost2 * damage<< " HP, ubral sis 2 HP a stalo te to " << Mana2 << " many.";
                 } else if (zivoty < (schopnost2 * damage)){
                     cout << endl << "Ubral jsi nepritely " << zivoty << " HP, ubral sis 2 HP a stalo te to " << Mana2 << " many.";
                 }
                 zivoty = zivoty - schopnost2 * damage;
-                HP = HP - 2;
+
             }
             break;
         default:
@@ -603,17 +610,23 @@ void souboj4(int Turkoin, int aktHP, int HP, int aktMana, int damage, int schopn
         abort(); //Tohle jsem si našel na google. Nevìdìl jsem jak se program mùže ukonèit ve funkci.
     }
 }
-void MiniBoss1(int Turkoin, int aktHP, int HP, int aktMana, int damage, int schopnost1, int Mana1, int schopnost2, int Mana2, int heal, int SnizeniHP, int XP, int &aktXP, int &aktTurkoin, int &afterHP){
+void MiniBoss1(int Turkoin, int aktHP, int HP, int aktMana, int damage, int schopnost1, int Mana1, int schopnost2, int Mana2, int heal, int SnizeniHP, int XP, int &aktXP, int &aktTurkoin, int &afterHP , int uloz, int &ulozeni ){
     string name;
     int zivoty;
     int uder;
     int nahoda = rand() % 2 + 1;
+    ulozeni = uloz;
+    if (ulozeni > 0){
+        nahoda = ulozeni;
+    }
     switch (nahoda){
     case 1:
         Kebabloater(name, zivoty, uder);
+        ulozeni = 2;
         break;
     case 2:
         Kebabrain(name, zivoty, uder);
+        ulozeni = 1;
         break;
     }
 
@@ -677,22 +690,29 @@ void MiniBoss1(int Turkoin, int aktHP, int HP, int aktMana, int damage, int scho
         cout << endl << "Dostal jsi 150 XP";
         aktXP = XP + 150;
         cout << endl << "Mini boss mel u sebe 10 Turkoinu.";
+        aktTurkoin = Turkoin + 10;
         afterHP = aktHP - HP;
         afterHP = afterHP / 2;
         afterHP = afterHP + HP;
     }
 }
-void MiniBoss2(int Turkoin, int aktHP, int HP, int aktMana, int damage, int schopnost1, int Mana1, int schopnost2, int Mana2, int heal, int SnizeniHP, int XP, int &aktXP, int &aktTurkoin, int &afterHP){
+void MiniBoss2(int Turkoin, int aktHP, int HP, int aktMana, int damage, int schopnost1, int Mana1, int schopnost2, int Mana2, int heal, int SnizeniHP, int XP, int &aktXP, int &aktTurkoin, int &afterHP, int uloz, int &ulozeni ){
     string name;
     int zivoty;
     int uder;
     int nahoda = rand() % 2 + 1;
+    ulozeni = uloz;
+    if (ulozeni > 0){
+        nahoda = ulozeni;
+    }
     switch (nahoda){
     case 1:
         Kebabloater(name, zivoty, uder);
+        ulozeni = 2;
         break;
     case 2:
         Kebabrain(name, zivoty, uder);
+        ulozeni = 1;
         break;
     }
 
@@ -708,7 +728,7 @@ void MiniBoss2(int Turkoin, int aktHP, int HP, int aktMana, int damage, int scho
             abort();
         }
         cout << endl << endl << "Tvoje HP: " << HP << "/" << aktHP << "    tvoje Mana: " << aktMana;
-        cout << endl << " Mozne tahy: " << endl << "1) Hod rajcetem: poskozeni " << damage << endl << "2) Salatovy katapult: uberes vsem cilum " << schopnost1 << " HP - stoji 3 many" << endl << "3)  Masovy vypad: Ubere nepritely " << schopnost2 << " HP - stoji 5 man" << endl << "Co chces hrat? ";
+        cout << endl << " Mozne tahy: " << endl << "1) Hod rajcetem: poskozeni " << damage << endl << "2) Salatovy katapult: uberes vsem cilum " << schopnost1 << " HP - stoji 2 many" << endl << "3)  Masovy vypad: Ubere nepritely " << schopnost2 << " HP - stoji 3 man" << endl << "Co chces hrat? ";
         cin >> volba_tahu;
         switch(volba_tahu){
         case 1:
@@ -757,22 +777,29 @@ void MiniBoss2(int Turkoin, int aktHP, int HP, int aktMana, int damage, int scho
         cout << endl << "Dostal jsi 150 XP";
         aktXP = XP + 150;
         cout << endl << "Mini boss mel u sebe 10 Turkoinu.";
+        aktTurkoin = Turkoin + 10;
         afterHP = aktHP - HP;
         afterHP = afterHP / 2;
         afterHP = afterHP + HP;
     }
 }
-void MiniBoss3(int Turkoin, int aktHP, int HP, int aktMana, int damage, int schopnost1, int Mana1, int schopnost2, int Mana2, int heal, int SnizeniHP, int XP, int &aktXP, int &aktTurkoin, int &afterHP){
+void MiniBoss3(int Turkoin, int aktHP, int HP, int aktMana, int damage, int schopnost1, int Mana1, int schopnost2, int Mana2, int heal, int SnizeniHP, int XP, int &aktXP, int &aktTurkoin, int &afterHP, int uloz, int &ulozeni ){
     string name;
     int zivoty;
     int uder;
     int nahoda = rand() % 2 + 1;
+    ulozeni = uloz;
+    if (ulozeni > 0){
+        nahoda = ulozeni;
+    }
     switch (nahoda){
     case 1:
         Kebabloater(name, zivoty, uder);
+        ulozeni = 2;
         break;
     case 2:
         Kebabrain(name, zivoty, uder);
+        ulozeni = 1;
         break;
     }
 
@@ -837,22 +864,29 @@ void MiniBoss3(int Turkoin, int aktHP, int HP, int aktMana, int damage, int scho
         cout << endl << "Dostal jsi 150 XP";
         aktXP = XP + 150;
         cout << endl << "Mini boss mel u sebe 10 Turkoinu.";
+        aktTurkoin = Turkoin + 10;
         afterHP = aktHP - HP;
         afterHP = afterHP / 2;
         afterHP = afterHP + HP;
     }
 }
-void MiniBoss4(int Turkoin, int aktHP, int HP, int aktMana, int damage, int schopnost1, int Mana1, int schopnost2, int Mana2, int heal, int SnizeniHP, int XP, int &aktXP, int &aktTurkoin, int &afterHP){
+void MiniBoss4(int Turkoin, int aktHP, int HP, int aktMana, int damage, int schopnost1, int Mana1, int schopnost2, int Mana2, int heal, int SnizeniHP, int XP, int &aktXP, int &aktTurkoin, int &afterHP, int uloz, int &ulozeni ){
     string name;
     int zivoty;
     int uder;
     int nahoda = rand() % 2 + 1;
+    ulozeni = uloz;
+    if (ulozeni > 0){
+        nahoda = ulozeni;
+    }
     switch (nahoda){
     case 1:
         Kebabloater(name, zivoty, uder);
+        ulozeni = 2;
         break;
     case 2:
         Kebabrain(name, zivoty, uder);
+        ulozeni = 1;
         break;
     }
 
@@ -868,7 +902,7 @@ void MiniBoss4(int Turkoin, int aktHP, int HP, int aktMana, int damage, int scho
             abort();
         }
         cout << endl << endl << "Tvoje HP: " << HP << "/" << aktHP << "    tvoje Mana: " << aktMana;
-        cout << endl << " Mozne tahy: " << endl << "1) Spalena tortila: poskozeni " << damage << endl << "2) Vysati omacky: udeli poskozeni " << schopnost1 << " a vyleci hrace o 2 HP - stoji 4 many" << endl << "3) Zkazene maso: pristi utok da " << schopnost2 << "nasobne poskozeni, ale hrac ztrati 2 HP - stoji 3 many" << endl << "Co chces hrat? ";
+        cout << endl << " Mozne tahy: " << endl << "1) Spalena tortila: poskozeni " << damage << endl << "2) Vysati omacky: udeli poskozeni " << schopnost1 << " a vyleci hrace o 3 HP - stoji 4 many" << endl << "3) Zkazene maso: pristi utok da " << schopnost2 << "nasobne poskozeni, ale hrac ztrati 1 HP - stoji 3 many" << endl << "Co chces hrat? ";
         cin >> volba_tahu;
         switch(volba_tahu){
         case 1:
@@ -887,13 +921,13 @@ void MiniBoss4(int Turkoin, int aktHP, int HP, int aktMana, int damage, int scho
                 aktMana = aktMana - Mana1;
                 if (zivoty >= schopnost1){
                     cout << endl << "Ubral jsi nepritely " << schopnost1 << " HP, vyhealoval sis " << heal << " HP a stalo te to " << Mana1 << " many.";
-                    HP = HP + 2;
+                    HP = HP + 3;
                     if (HP > aktHP){
                         HP = aktHP;
                     }
                 } else if (zivoty < schopnost1){
                     cout << endl << "Ubral jsi nepritely " << zivoty << " HP, vyhealoval sis " << heal << " HP a stalo te to " << Mana1 << " many.";
-                    HP = HP + 2;
+                    HP = HP + 3;
                     if (HP > aktHP){
                         HP = aktHP;
                     }
@@ -907,13 +941,17 @@ void MiniBoss4(int Turkoin, int aktHP, int HP, int aktMana, int damage, int scho
                 volba_tahu = 5;
             } else if (aktMana >= Mana2){
                 aktMana = aktMana - Mana2;
+                HP = HP - 1;
+                if (HP <= 0){
+                    cout << "Zabil ses LOL :-D";
+                    abort();
+                }
                 if (zivoty >= schopnost2 * damage){
                     cout << endl << "Ubral jsi nepritely " << schopnost2 * damage<< " HP, ubral sis 2 HP a stalo te to " << Mana2 << " many.";
                 } else if (zivoty < schopnost2 * damage){
                     cout << endl << "Ubral jsi nepritely " << zivoty << " HP, ubral sis 2 HP a stalo te to " << Mana2 << " many.";
                 }
                 zivoty = zivoty - schopnost2 * damage;
-                HP = HP - SnizeniHP;
             }
             break;
         default:
@@ -926,6 +964,7 @@ void MiniBoss4(int Turkoin, int aktHP, int HP, int aktMana, int damage, int scho
         cout << endl << "Dostal jsi 150 XP";
         aktXP = XP + 150;
         cout << endl << "Mini boss mel u sebe 10 Turkoinu.";
+        aktTurkoin = Turkoin + 10;
         afterHP = aktHP - HP;
         afterHP = afterHP / 2;
         afterHP = afterHP + HP;
@@ -1113,7 +1152,7 @@ void souboj_se_dvemi2(int Turkoin, int aktHP, int HP, int aktMana, int damage, i
                 cout << endl << "Poskozeni nepritele " << name2 << " : " << uder2 << "    Zivoty nepritele " << name2 << " : " << zivoty2;
             }
             cout << endl << endl << "Tvoje HP: " << HP << "/" << aktHP << "    tvoje Mana: " << aktMana;
-            cout << endl << " Mozne tahy: " << endl << "1) Hod rajcetem: poskozeni " << damage << endl << "2) Salatovy katapult: uberes vsem cilum " << schopnost1 << " HP - stoji 3 many" << endl << "3)  Masovy vypad: Ubere nepritely " << schopnost2 << " HP - stoji 5 man" << endl << "Co chces hrat? ";
+            cout << endl << " Mozne tahy: " << endl << "1) Hod rajcetem: poskozeni " << damage << endl << "2) Salatovy katapult: uberes vsem cilum " << schopnost1 << " HP - stoji 2 many" << endl << "3)  Masovy vypad: Ubere nepritely " << schopnost2 << " HP - stoji 3 man" << endl << "Co chces hrat? ";
             cin >> volba_tahu;
             switch(volba_tahu){
             case 1:
@@ -1453,7 +1492,7 @@ void souboj_se_dvemi4(int Turkoin, int aktHP, int HP, int aktMana, int damage, i
                 cout << endl << "Poskozeni nepritele " << name2 << " : " << uder2 << "    Zivoty nepritele " << name2 << " : " << zivoty2;
             }
             cout << endl << endl << "Tvoje HP: " << HP << "/" << aktHP << "    tvoje Mana: " << aktMana;
-            cout << endl << " Mozne tahy: " << endl << "1) Spalena tortila: poskozeni " << damage << endl << "2) Vysati omacky: udeli poskozeni " << schopnost1 << " a vyleci hrace o 2 HP - stoji 4 many" << endl << "3) Zkazene maso: pristi utok da " << schopnost2 << "nasobne poskozeni, ale hrac ztrati 2 HP - stoji 3 many" << endl << "Co chces hrat? ";
+            cout << endl << " Mozne tahy: " << endl << "1) Spalena tortila: poskozeni " << damage << endl << "2) Vysati omacky: udeli poskozeni " << schopnost1 << " a vyleci hrace o 3 HP - stoji 4 many" << endl << "3) Zkazene maso: pristi utok da " << schopnost2 << "nasobne poskozeni, ale hrac ztrati 1 HP - stoji 3 many" << endl << "Co chces hrat? ";
             cin >> volba_tahu;
             switch(volba_tahu){
             case 1:
@@ -1519,17 +1558,25 @@ void souboj_se_dvemi4(int Turkoin, int aktHP, int HP, int aktMana, int damage, i
                             cout << endl << "Ubral jsi nepritely " << name << " " << zivoty << " HP, vyhealoval sis 2 HP a stalo te to " << Mana1 << " many.";
                         }
                         zivoty = zivoty - schopnost1;
-                        HP = HP + heal;
+                        HP = HP + 3;
+                        if (HP > aktHP){
+                            HP = aktHP;
+                        }
                     }
                     break;
                 case 2:
                         if (aktMana >= Mana1){
+                            aktMana = aktMana - Mana1;
                         if (zivoty2 >= schopnost1){
                             cout << endl << "Ubral jsi nepritely " << name2 << " " << schopnost1 << " HP, vyhealoval sis 2 HP a stalo te to " << Mana1 << " many.";
                         } else if (zivoty2 < schopnost1){
                             cout << endl << "Ubral jsi nepritely " << name2 << " " << zivoty2 << " HP, vyhealoval sis 2 HP a stalo te to " << Mana1 << " many.";
                         }
                         zivoty2 = zivoty2 - schopnost1;
+                        HP = HP + 3;
+                        if (HP > aktHP){
+                            HP = aktHP;
+                        }
                     }
                 }
                 break;
@@ -1539,6 +1586,11 @@ void souboj_se_dvemi4(int Turkoin, int aktHP, int HP, int aktMana, int damage, i
                     volba_tahu = 5;
                 } else if (aktMana >= Mana2){
                     aktMana = aktMana - Mana2;
+                    HP = HP - 1;
+                if (HP <= 0){
+                    cout << "Zabil ses LOL :-D";
+                    abort();
+                }
                     if (zivoty <= 0){
                     volba_monstra = 2;
                 } else if (zivoty2 <= 0){
@@ -1570,7 +1622,6 @@ void souboj_se_dvemi4(int Turkoin, int aktHP, int HP, int aktMana, int damage, i
                     zivoty2 = zivoty2 - schopnost2 * damage;
                     break;
                 }
-                HP = HP - 2;
                 }
                 break;
             default:
@@ -1817,7 +1868,7 @@ void souboj_se_tremi2(int Turkoin, int aktHP, int HP, int aktMana, int damage, i
                 cout << endl << "Poskozeni nepritele " << name3 << " : " << uder3 << "    Zivoty nepritele " << name3 << " : " << zivoty3;
             }
             cout << endl << endl << "Tvoje HP: " << HP << "/" << aktHP << "    tvoje Mana: " << aktMana;
-            cout << endl << " Mozne tahy: " << endl << "1) Hod rajcetem: poskozeni " << damage << endl << "2) Salatovy katapult: uberes vsem cilum " << schopnost1 << " HP - stoji 3 many" << endl << "3)  Masovy vypad: Ubere nepritely " << schopnost2 << " HP - stoji 5 man" << endl << "Co chces hrat? ";
+            cout << endl << " Mozne tahy: " << endl << "1) Hod rajcetem: poskozeni " << damage << endl << "2) Salatovy katapult: uberes vsem cilum " << schopnost1 << " HP - stoji 2 many" << endl << "3)  Masovy vypad: Ubere nepritely " << schopnost2 << " HP - stoji 3 man" << endl << "Co chces hrat? ";
             cin >> volba_tahu;
             switch(volba_tahu){
             case 1:
@@ -2291,7 +2342,7 @@ void souboj_se_tremi4(int Turkoin, int aktHP, int HP, int aktMana, int damage, i
                 cout << endl << "Poskozeni nepritele " << name3 << " : " << uder3 << "    Zivoty nepritele " << name3 << " : " << zivoty3;
             }
             cout << endl << endl << "Tvoje HP: " << HP << "/" << aktHP << "    tvoje Mana: " << aktMana;
-            cout << endl << " Mozne tahy: " << endl << "1) Spalena tortila: poskozeni " << damage << endl << "2) Vysati omacky: udeli poskozeni " << schopnost1 << " a vyleci hrace o 2 HP - stoji 4 many" << endl << "3) Zkazene maso: pristi utok da " << schopnost2 << "nasobne poskozeni, ale hrac ztrati 2 HP - stoji 3 many" << endl << "Co chces hrat? ";
+            cout << endl << " Mozne tahy: " << endl << "1) Spalena tortila: poskozeni " << damage << endl << "2) Vysati omacky: udeli poskozeni " << schopnost1 << " a vyleci hrace o 3 HP - stoji 4 many" << endl << "3) Zkazene maso: pristi utok da " << schopnost2 << "nasobne poskozeni, ale hrac ztrati 1 HP - stoji 3 many" << endl << "Co chces hrat? ";
             cin >> volba_tahu;
             switch(volba_tahu){
             case 1:
@@ -2365,6 +2416,7 @@ void souboj_se_tremi4(int Turkoin, int aktHP, int HP, int aktMana, int damage, i
                     cout << endl << "Na tohle nemas dost Many";
                     volba_tahu = 5;
                 } else if (aktMana >= Mana1){
+                    aktMana = aktMana - Mana1;
                     if (zivoty <= 0 && zivoty3 <= 0){
                     volba_monstra = 2;
                 } else if (zivoty2 <= 0 && zivoty3 <= 0){
@@ -2428,7 +2480,7 @@ void souboj_se_tremi4(int Turkoin, int aktHP, int HP, int aktMana, int damage, i
                     zivoty3 = zivoty3 - schopnost1;
                     break;
                 }
-                HP = HP + 2;
+                HP = HP + 3;
                     if (HP > aktHP){
                         HP = aktHP;
                     }
@@ -2438,6 +2490,13 @@ void souboj_se_tremi4(int Turkoin, int aktHP, int HP, int aktMana, int damage, i
                 if (aktMana < Mana2){
                     cout << endl << "Na tohle nemas dost Many";
                     volba_tahu = 5;
+                }
+                if (aktMana >= Mana2){
+                        aktMana = aktMana - Mana2;
+                    HP = HP - 1;
+                if (HP <= 0){
+                    cout << "Zabil ses LOL :-D";
+                    abort();
                 }
                 if (zivoty <= 0 && zivoty3 <= 0){
                     volba_monstra = 2;
@@ -2502,7 +2561,7 @@ void souboj_se_tremi4(int Turkoin, int aktHP, int HP, int aktMana, int damage, i
                     zivoty3 = zivoty3 - schopnost2 * damage;
                     break;
                 }
-                HP = HP - 2;
+                }
                 break;
             default:
                 cout << endl << "Zadal jsi spatne cislo, zkus to znovu";
@@ -2740,7 +2799,7 @@ void Kebabex2(int Turkoin, int aktHP, int HP, int aktMana, int damage, int schop
             }
             cout << endl << endl <<"    Zivoty nepritele: " << zivoty;
             cout << endl << endl << "Tvoje HP: " << HP << "/" << aktHP << "    tvoje Mana: " << aktMana;
-            cout << endl << " Mozne tahy: " << endl << "1) Hod rajcetem: poskozeni " << damage << endl << "2) Salatovy katapult: uberes vsem cilum " << schopnost1 << " HP - stoji 3 many" << endl << "3)  Masovy vypad: Ubere nepritely " << schopnost2 << " HP - stoji 5 man" << endl << "Co chces hrat? ";
+            cout << endl << " Mozne tahy: " << endl << "1) Hod rajcetem: poskozeni " << damage << endl << "2) Salatovy katapult: uberes vsem cilum " << schopnost1 << " HP - stoji 2 many" << endl << "3)  Masovy vypad: Ubere nepritely " << schopnost2 << " HP - stoji 3 man" << endl << "Co chces hrat? ";
             cin >> volba_tahu;
             switch(volba_tahu){
             case 1:
@@ -2981,7 +3040,7 @@ void Kebabex4(int Turkoin, int aktHP, int HP, int aktMana, int damage, int schop
             cout << endl << endl <<"    Zivoty nepritele: " << zivoty;
 
             cout << endl << endl << "Tvoje HP: " << HP << "/" << aktHP << "    tvoje Mana: " << aktMana;
-            cout << endl << " Mozne tahy: " << endl << "1) Spalena tortila: poskozeni " << damage << endl << "2) Vysati omacky: udeli poskozeni " << schopnost1 << " a vyleci hrace o 2 HP - stoji 4 many" << endl << "3) Zkazene maso: pristi utok da " << schopnost2 << "nasobne poskozeni, ale hrac ztrati 2 HP - stoji 3 many" << endl << "Co chces hrat? ";
+            cout << endl << " Mozne tahy: " << endl << "1) Spalena tortila: poskozeni " << damage << endl << "2) Vysati omacky: udeli poskozeni " << schopnost1 << " a vyleci hrace o 3 HP - stoji 4 many" << endl << "3) Zkazene maso: pristi utok da " << schopnost2 << "nasobne poskozeni, ale hrac ztrati 1 HP - stoji 3 many" << endl << "Co chces hrat? ";
             cin >> volba_tahu;
             switch(volba_tahu){
             case 1:
@@ -3000,13 +3059,13 @@ void Kebabex4(int Turkoin, int aktHP, int HP, int aktMana, int damage, int schop
                 aktMana = aktMana - Mana1;
                 if (zivoty >= schopnost1){
                     cout << endl << "Ubral jsi nepritely " << schopnost1 << " HP, vyhealoval sis " << heal << " HP a stalo te to " << Mana1 << " many.";
-                    HP = HP + 2;
+                    HP = HP + 3;
                     if (HP > aktHP){
                         HP = aktHP;
                     }
                 } else if (zivoty < schopnost1){
                     cout << endl << "Ubral jsi nepritely " << zivoty << " HP, vyhealoval sis " << heal << " HP a stalo te to " << Mana1 << " many.";
-                    HP = HP + 2;
+                    HP = HP + 3;
                     if (HP > aktHP){
                         HP = aktHP;
                     }
@@ -3019,6 +3078,11 @@ void Kebabex4(int Turkoin, int aktHP, int HP, int aktMana, int damage, int schop
                     cout << endl << "Na tohle nemas dost Many";
                     volba_tahu = 5;
                 } else if (aktMana >= Mana2){
+                    HP = HP - 1;
+                if (HP <= 0){
+                    cout << "Zabil ses LOL :-D";
+                    abort();
+                }
                     aktMana = aktMana - Mana2;
                     if (zivoty >= schopnost2 * damage){
                         cout << endl << "Ubral jsi nepritely " << schopnost2 * damage<< " HP, ubral sis 2 HP a stalo te to " << Mana2 << " many.";
@@ -3026,7 +3090,6 @@ void Kebabex4(int Turkoin, int aktHP, int HP, int aktMana, int damage, int schop
                         cout << endl << "Ubral jsi nepritely " << zivoty << " HP, ubral sis 2 HP a stalo te to " << Mana2 << " many.";
                     }
                     zivoty = zivoty - schopnost2 * damage;
-                    HP = HP - SnizeniHP;
                 }
                 break;
             default:
@@ -3060,6 +3123,7 @@ int main(){
     int Mana2;
     int heal;
     int SnizeniHP;
+    int uloz = 0;
     string boss = "Kebabex";
     cout << "___Zdravim dobrodruhu___" <<  endl << endl << "Vitej ve svete, kde lidska touha po kebabu prekonala veskere meze a stala se zhoubou lidstva." << endl;
     cout << "Vsechno zacalo docela nevinne. Objevilo se jedno uzasne jidlo: KEBAB. Od te chvile uz nikdy nebylo nic stejne." << endl;
@@ -3099,8 +3163,8 @@ int main(){
     potvrzeni = 'z';
     if (volba_class == 1){
         jmeno = "Gemuse Kebab";
-        maxHP = 24;
-        aktHP = 12;
+        maxHP = 20;
+        aktHP = 10;
         maxMana = 14;
         aktMana = 7;
         Turkoin = 10;
@@ -3113,38 +3177,38 @@ int main(){
         Mana2 = 2;
     } else if (volba_class == 2){
         jmeno = "Kebab Classic";
-        maxHP = 18;
-        aktHP = 9;
-        maxMana = 16;
-        aktMana = 8;
+        maxHP = 24;
+        aktHP = 12;
+        maxMana = 18;
+        aktMana = 9;
         Turkoin = 10;
         level = 1;
         XP = 0;
         damage = 4;
         schopnost1 = 3;
-        Mana1 = 3;
-        schopnost2 = 8;
-        Mana2 = 5;
+        Mana1 = 2;
+        schopnost2 = 7;
+        Mana2 = 3;
     } else if (volba_class == 3){
         jmeno = "Magicky Falafel";
-        maxHP = 12;
-        aktHP = 6;
+        maxHP = 18;
+        aktHP = 9;
         maxMana = 30;
         aktMana = 15;
         Turkoin = 10;
         level = 1;
         XP = 0;
-        damage = 2;
-        schopnost1 = 4;
+        damage = 3;
+        schopnost1 = 5;
         Mana1 = 4;
         schopnost2 = 10;
         Mana2 = 6;
     } else if (volba_class == 4){
         jmeno = "Temny Kebab";
-        maxHP = 12;
-        aktHP = 6;
-        maxMana = 20;
-        aktMana = 10;
+        maxHP = 14;
+        aktHP = 7;
+        maxMana = 24;
+        aktMana = 12;
         Turkoin = 10;
         level = 1;
         XP = 0;
@@ -3157,7 +3221,6 @@ int main(){
         Mana2 = 3;
     }
     HP = aktHP;
-    Kebabex1(Turkoin, aktHP, HP, aktMana, damage, schopnost1, Mana1, schopnost2, Mana2, heal, SnizeniHP, XP, XP, Turkoin, HP);
     Vesnice(HP, aktHP, aktMana, Turkoin, volba_nakupu, maxHP, maxMana, damage, schopnost1, schopnost2, HP, aktHP, aktMana, Turkoin, damage, schopnost1, schopnost2);
     switch (volba_class){
     case 1:
@@ -3187,7 +3250,7 @@ int main(){
         souboj4(Turkoin, aktHP, HP, aktMana, damage, schopnost1, Mana1, schopnost2, Mana2, heal, SnizeniHP, XP, XP, Turkoin, HP);
         break;
     }
-    levelup(XP, level, aktHP, aktMana, damage, aktHP, HP, aktMana, damage, XP);
+    levelup(XP, level, aktHP, aktMana, damage, aktHP, HP, aktMana, damage, XP, level);
     switch (volba_class){
     case 1:
         souboj_se_dvemi1(Turkoin, aktHP, HP, aktMana, damage, schopnost1, Mana1, schopnost2, Mana2, heal, SnizeniHP, XP, XP, Turkoin, HP);
@@ -3202,22 +3265,22 @@ int main(){
         souboj_se_dvemi4(Turkoin, aktHP, HP, aktMana, damage, schopnost1, Mana1, schopnost2, Mana2, heal, SnizeniHP, XP, XP, Turkoin, HP);
         break;
     }
-    levelup(XP, level, aktHP, aktMana, damage, aktHP, HP, aktMana, damage, XP);
+    levelup(XP, level, aktHP, aktMana, damage, aktHP, HP, aktMana, damage, XP, level);
     switch (volba_class){
     case 1:
-        MiniBoss1(Turkoin, aktHP, HP, aktMana, damage, schopnost1, Mana1, schopnost2, Mana2, heal, SnizeniHP, XP, XP, Turkoin, HP);
+        MiniBoss1(Turkoin, aktHP, HP, aktMana, damage, schopnost1, Mana1, schopnost2, Mana2, heal, SnizeniHP, XP, XP, Turkoin, HP , uloz, uloz);
         break;
     case 2:
-        MiniBoss2(Turkoin, aktHP, HP, aktMana, damage, schopnost1, Mana1, schopnost2, Mana2, heal, SnizeniHP, XP, XP, Turkoin, HP);
+        MiniBoss2(Turkoin, aktHP, HP, aktMana, damage, schopnost1, Mana1, schopnost2, Mana2, heal, SnizeniHP, XP, XP, Turkoin, HP , uloz, uloz);
         break;
     case 3:
-        MiniBoss3(Turkoin, aktHP, HP, aktMana, damage, schopnost1, Mana1, schopnost2, Mana2, heal, SnizeniHP, XP, XP, Turkoin, HP);
+        MiniBoss3(Turkoin, aktHP, HP, aktMana, damage, schopnost1, Mana1, schopnost2, Mana2, heal, SnizeniHP, XP, XP, Turkoin, HP , uloz, uloz);
         break;
     case 4:
-        MiniBoss4(Turkoin, aktHP, HP, aktMana, damage, schopnost1, Mana1, schopnost2, Mana2, heal, SnizeniHP, XP, XP, Turkoin, HP);
+        MiniBoss4(Turkoin, aktHP, HP, aktMana, damage, schopnost1, Mana1, schopnost2, Mana2, heal, SnizeniHP, XP, XP, Turkoin, HP , uloz, uloz);
         break;
     }
-    levelup(XP, level, aktHP, aktMana, damage, aktHP, HP, aktMana, damage, XP);
+    levelup(XP, level, aktHP, aktMana, damage, aktHP, HP, aktMana, damage, XP, level);
     Vesnice(HP, aktHP, aktMana, Turkoin, volba_nakupu, maxHP, maxMana, damage, schopnost1, schopnost2, HP, aktHP, aktMana, Turkoin, damage, schopnost1, schopnost2);
     switch (volba_class){
     case 1:
@@ -3233,7 +3296,7 @@ int main(){
         souboj4(Turkoin, aktHP, HP, aktMana, damage, schopnost1, Mana1, schopnost2, Mana2, heal, SnizeniHP, XP, XP, Turkoin, HP);
         break;
     }
-    levelup(XP, level, aktHP, aktMana, damage, aktHP, HP, aktMana, damage, XP);
+    levelup(XP, level, aktHP, aktMana, damage, aktHP, HP, aktMana, damage, XP, level);
     switch (volba_class){
     case 1:
         souboj_se_dvemi1(Turkoin, aktHP, HP, aktMana, damage, schopnost1, Mana1, schopnost2, Mana2, heal, SnizeniHP, XP, XP, Turkoin, HP);
@@ -3248,7 +3311,7 @@ int main(){
         souboj_se_dvemi4(Turkoin, aktHP, HP, aktMana, damage, schopnost1, Mana1, schopnost2, Mana2, heal, SnizeniHP, XP, XP, Turkoin, HP);
         break;
     }
-    levelup(XP, level, aktHP, aktMana, damage, aktHP, HP, aktMana, damage, XP);
+    levelup(XP, level, aktHP, aktMana, damage, aktHP, HP, aktMana, damage, XP, level);
     switch (volba_class){
     case 1:
         souboj_se_dvemi1(Turkoin, aktHP, HP, aktMana, damage, schopnost1, Mana1, schopnost2, Mana2, heal, SnizeniHP, XP, XP, Turkoin, HP);
@@ -3263,22 +3326,22 @@ int main(){
         souboj_se_dvemi4(Turkoin, aktHP, HP, aktMana, damage, schopnost1, Mana1, schopnost2, Mana2, heal, SnizeniHP, XP, XP, Turkoin, HP);
         break;
     }
-    levelup(XP, level, aktHP, aktMana, damage, aktHP, HP, aktMana, damage, XP);
+    levelup(XP, level, aktHP, aktMana, damage, aktHP, HP, aktMana, damage, XP, level);
     switch (volba_class){
     case 1:
-        MiniBoss1(Turkoin, aktHP, HP, aktMana, damage, schopnost1, Mana1, schopnost2, Mana2, heal, SnizeniHP, XP, XP, Turkoin, HP);
+        MiniBoss1(Turkoin, aktHP, HP, aktMana, damage, schopnost1, Mana1, schopnost2, Mana2, heal, SnizeniHP, XP, XP, Turkoin, HP , uloz, uloz);
         break;
     case 2:
-        MiniBoss2(Turkoin, aktHP, HP, aktMana, damage, schopnost1, Mana1, schopnost2, Mana2, heal, SnizeniHP, XP, XP, Turkoin, HP);
+        MiniBoss2(Turkoin, aktHP, HP, aktMana, damage, schopnost1, Mana1, schopnost2, Mana2, heal, SnizeniHP, XP, XP, Turkoin, HP , uloz, uloz);
         break;
     case 3:
-        MiniBoss3(Turkoin, aktHP, HP, aktMana, damage, schopnost1, Mana1, schopnost2, Mana2, heal, SnizeniHP, XP, XP, Turkoin, HP);
+        MiniBoss3(Turkoin, aktHP, HP, aktMana, damage, schopnost1, Mana1, schopnost2, Mana2, heal, SnizeniHP, XP, XP, Turkoin, HP , uloz, uloz);
         break;
     case 4:
-        MiniBoss4(Turkoin, aktHP, HP, aktMana, damage, schopnost1, Mana1, schopnost2, Mana2, heal, SnizeniHP, XP, XP, Turkoin, HP);
+        MiniBoss4(Turkoin, aktHP, HP, aktMana, damage, schopnost1, Mana1, schopnost2, Mana2, heal, SnizeniHP, XP, XP, Turkoin, HP , uloz, uloz);
         break;
     }
-    levelup(XP, level, aktHP, aktMana, damage, aktHP, HP, aktMana, damage, XP);
+    levelup(XP, level, aktHP, aktMana, damage, aktHP, HP, aktMana, damage, XP, level);
     Vesnice(HP, aktHP, aktMana, Turkoin, volba_nakupu, maxHP, maxMana, damage, schopnost1, schopnost2, HP, aktHP, aktMana, Turkoin, damage, schopnost1, schopnost2);
     switch (volba_class){
     case 1:
@@ -3294,7 +3357,7 @@ int main(){
         souboj_se_dvemi4(Turkoin, aktHP, HP, aktMana, damage, schopnost1, Mana1, schopnost2, Mana2, heal, SnizeniHP, XP, XP, Turkoin, HP);
         break;
     }
-    levelup(XP, level, aktHP, aktMana, damage, aktHP, HP, aktMana, damage, XP);
+    levelup(XP, level, aktHP, aktMana, damage, aktHP, HP, aktMana, damage, XP, level);
     switch (volba_class){
     case 1:
         souboj_se_dvemi1(Turkoin, aktHP, HP, aktMana, damage, schopnost1, Mana1, schopnost2, Mana2, heal, SnizeniHP, XP, XP, Turkoin, HP);
@@ -3309,7 +3372,7 @@ int main(){
         souboj_se_dvemi4(Turkoin, aktHP, HP, aktMana, damage, schopnost1, Mana1, schopnost2, Mana2, heal, SnizeniHP, XP, XP, Turkoin, HP);
         break;
     }
-    levelup(XP, level, aktHP, aktMana, damage, aktHP, HP, aktMana, damage, XP);
+    levelup(XP, level, aktHP, aktMana, damage, aktHP, HP, aktMana, damage, XP, level);
     switch (volba_class){
     case 1:
         souboj_se_tremi1(Turkoin, aktHP, HP, aktMana, damage, schopnost1, Mana1, schopnost2, Mana2, heal, SnizeniHP, XP, XP, Turkoin, HP);
@@ -3324,8 +3387,8 @@ int main(){
         souboj_se_tremi4(Turkoin, aktHP, HP, aktMana, damage, schopnost1, Mana1, schopnost2, Mana2, heal, SnizeniHP, XP, XP, Turkoin, HP);
         break;
     }
-    levelup(XP, level, aktHP, aktMana, damage, aktHP, HP, aktMana, damage, XP);
-    cout << endl << endl << endl << "---------------------UPZORNENI--------------------" << endl << endl << "Toto je posledni vesnice pred hlavnim bossem hry, doporucuje se rozumne utratit vsechny zbyle penize." << endl << endl;
+    levelup(XP, level, aktHP, aktMana, damage, aktHP, HP, aktMana, damage, XP, level);
+    cout << endl << endl << endl << "---------------------UPOZORNENI--------------------" << endl << endl << "Toto je posledni vesnice pred hlavnim bossem hry, doporucuje se rozumne utratit vsechny zbyle penize." << endl << endl;
     Vesnice(HP, aktHP, aktMana, Turkoin, volba_nakupu, maxHP, maxMana, damage, schopnost1, schopnost2, HP, aktHP, aktMana, Turkoin, damage, schopnost1, schopnost2);
     switch (volba_class){
     case 1:
